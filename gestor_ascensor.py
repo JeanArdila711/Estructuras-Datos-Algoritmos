@@ -26,6 +26,12 @@ def main():
 
     trabajadores_procesados = set()  # Crear un conjunto para rastrear trabajadores procesados
 
+    resultados = [] # Lista para almacenar los resultados
+
+    
+    for tiempo in range(400):
+        resultados.append(f"Tiempo{tiempo + 1}\n")
+
     while True:
         for trabajador in trabajadores:
             if trabajador not in trabajadores_procesados:
@@ -77,8 +83,12 @@ def main():
                 trabajadores_procesados.add(trabajador)  # Agregar al trabajador a la lista de procesados
 
         # Verificar si todos los trabajadores han sido procesados al menos una vez
-        if len(trabajadores_procesados) == len(trabajadores):
+        if all(trabajador in trabajadores_procesados for trabajador in trabajadores):
+            resultados.append("Todos los trabjadores han sido atendidos!")
             break
+
+    with open('simulacion_resultados.txt', 'w') as archivo:
+        archivo.writelines(resultados)
 
 if __name__ == "__main__":
     main()
