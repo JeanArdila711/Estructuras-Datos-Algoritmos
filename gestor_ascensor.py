@@ -5,6 +5,11 @@ from ascensor import Ascensor
 def calcular_distancia(piso1, piso2):
     return abs(piso1 - piso2)
 
+def activar_ascensores_emergencia(ascensores_emergencia):
+    for ascensor in ascensores_emergencia:
+        ascensor.emergencia = True
+
+
 def main():
     num_pisos = 120
 
@@ -16,8 +21,7 @@ def main():
 
     # Seleccionar 10 ascensores aleatoriamente para ser de emergencia
     ascensores_emergencia = random.sample(ascensores, 10)
-    for ascensor in ascensores_emergencia:
-        ascensor.emergencia = True
+    activar_ascensores_emergencia(ascensores_emergencia)
 
     num_trabajadores = random.randint(100, 200)
     trabajadores = [Trabajador(random.randint(1, num_pisos), random.randint(1, num_pisos)) for _ in range(num_trabajadores)]
